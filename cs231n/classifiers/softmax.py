@@ -90,7 +90,7 @@ def softmax_loss_vectorized(W, X, y, reg):
     loss = correct_scores_exp / scores_exp
     loss = - np.sum(np.log(loss)/num_train + reg*np.sum(W*W))
     s = np.divide(np.exp(scores), scores_exp.reshape(num_train, 1))
-    s[range(num_train), y] = 0
+    s[range(num_train), y] = 0 # 하든 안하든 결과는 똑같은 이유?? =으로 지정했기 때문 
     s[range(num_train), y] = -(scores_exp - correct_scores_exp) / scores_exp
     dW = X.T.dot(s)
     dW /= num_train
